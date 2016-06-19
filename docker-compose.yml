@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  nginx:
+    build: docker/nginx
+    ports:
+      - 8080:80
+    volumes_from:
+      - app
+  app:
+    command: "true"
+    image: alpine:3.4
+    volumes:
+      - .:/var/www/app
+  php:
+    build: docker/php
+    expose:
+      - 9000
+    volumes:
+      - composer-cache:/composer/cache
+    volumes_from:
+      - app
+
+volumes:
+  composer-cache:
+    driver: local
