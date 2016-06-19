@@ -1,18 +1,19 @@
-# Slim Framework 3 Skeleton Application
+# Slim Framework 3 Skeleton Application running on Docker Compose
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
-
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
+This is a sample PHP app ([Slim 3 Skeleton](https://github.com/slimphp/Slim-Skeleton)) running on [Docker Compose](https://docs.docker.com/compose/).
 
 ## Install the Application
 
-Run this command from the directory in which you want to install your new Slim Framework application.
+Run these commands in the directory where you download the code.
 
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
+1. Start the docker-compose services (PHP, Nginx) in the background (detached):
+  ```
+$ docker-compose up -d
+  ```
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
+2. Run the Composer installer in the PHP container to install the PHP dependencies:
+  ```
+$ docker-composer exec php composer install
+  ```
 
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
-
-That's it! Now go build something cool.
+The application should now be available on [http://localhost:8080](http://localhost:8080).
