@@ -13,7 +13,7 @@ $ docker-compose up -d
 
 2. Run the Composer installer in the PHP container to install the PHP dependencies:
   ```
-$ docker-composer exec php composer install
+$ docker-compose exec php composer install
   ```
 
 The application should now be available on [http://localhost:8080](http://localhost:8080).
