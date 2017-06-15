@@ -1,9 +1,10 @@
-FROM php:7.0-fpm-alpine
+FROM php:7.1-fpm-alpine
 
 COPY php.ini $PHP_INI_DIR/php.ini
 
 # Composer Dependencies
 RUN apk --update add \
+    bzip2-dev \
     autoconf \
     build-base \
     curl \
@@ -28,10 +29,7 @@ RUN apk --update add \
     apk del build-base && \
     rm -rf /var/cache/apk/*
 
-# PEAR tmp fix
-RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
-    apk add --update php7-pear@testing && \
-    rm -rf /var/cache/apk/*
+
 
 # Register the COMPOSER_HOME environment variable
 ENV COMPOSER_HOME /composer
